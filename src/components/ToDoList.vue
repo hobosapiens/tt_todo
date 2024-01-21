@@ -1,0 +1,41 @@
+<script setup>
+import ToDoCard from './ToDoCard.vue';
+import { useLoadMore } from './../hooks/use-load-more'
+import { toRefs, watch } from 'vue';
+
+const props = defineProps({
+  todos: {
+    type: Array,
+    required: true,
+  },
+});
+
+const { todos } = toRefs(props);
+const { data: loadedTodos, loadMore } = useLoadMore(todos.value);
+
+watch(todos, (newData) => {
+  const { data: updatedTodos } = useLoadMore(newData);
+  loadedTodos.value = updatedTodos.value;
+});
+</script>
+
+<template>
+  <div class="todo-list">
+    <ToDoCard
+    v-for="{ id, title, completed } in loadedTodos"
+    :key="id"
+    :id="id"
+    :title="title"
+    :isCompleted="completed"
+    />
+    <button @click="loadMore">Load more</button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+</style>
