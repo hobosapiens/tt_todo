@@ -1,22 +1,14 @@
 <script setup>
-import ToDo from './components/ToDo.vue'
+import ToDo from './components/todo/ToDo.vue'
 </script>
 
 <template>
   <ToDo />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style lang="scss">
+.iconify:hover path {
+  transition: color 0.3s ease;
+  color: $color-accent;
 }
 </style>

@@ -1,6 +1,21 @@
+<template>
+  <TransitionGroup name="list" tag="div" class="todo-list">
+    <ToDoCard
+      v-for="{ id, title, completed } in loadedTodos"
+      :key="id"
+      :id="id"
+      :title="title"
+      :isCompleted="completed"
+    />
+  </TransitionGroup>
+  <button @click="loadMore" class="button">
+    Load more...
+  </button>
+</template>
+
 <script setup>
 import ToDoCard from './ToDoCard.vue';
-import { useLoadMore } from './../hooks/use-load-more'
+import { useLoadMore } from './../../hooks/use-load-more'
 import { toRefs, watch } from 'vue';
 
 const props = defineProps({
@@ -19,23 +34,11 @@ watch(todos, (newData) => {
 });
 </script>
 
-<template>
-  <div class="todo-list">
-    <ToDoCard
-    v-for="{ id, title, completed } in loadedTodos"
-    :key="id"
-    :id="id"
-    :title="title"
-    :isCompleted="completed"
-    />
-    <button @click="loadMore">Load more</button>
-  </div>
-</template>
-
 <style lang="scss" scoped>
 .todo-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 10px;
 }
 </style>

@@ -1,13 +1,13 @@
 export const getFromLocalStorage = (key) => {
   try {
     const serializedData = localStorage.getItem(key);
-    if (serializedData === null) {
-      return undefined;
+    if (!serializedData) {
+      return;
     }
     return JSON.parse(serializedData);
   } catch (error) {
     console.error('Error loading data from localStorage:', error);
-    return undefined;
+    return;
   }
 }
 
