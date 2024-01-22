@@ -8,14 +8,15 @@
       :isCompleted="completed"
     />
   </TransitionGroup>
-  <button @click="loadMore" class="button">
+  <UiButton @click="loadMore">
     Load more...
-  </button>
+  </UiButton>
 </template>
 
 <script setup>
 import ToDoCard from './ToDoCard.vue';
-import { useLoadMore } from './../../hooks/use-load-more'
+import UiButton from './../ui/UiButton.vue';
+import { useLoadMore } from './../../hooks/use-load-more';
 import { toRefs, watch } from 'vue';
 
 const props = defineProps({

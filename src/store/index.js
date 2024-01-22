@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import { getFromLocalStorage, putToLocalStorage } from '../utils'
+import { defineStore } from 'pinia';
+import { getFromLocalStorage, putToLocalStorage } from '../utils';
 
 export const useTodoStore = defineStore('counter', {
   state: () => ({
@@ -9,7 +9,7 @@ export const useTodoStore = defineStore('counter', {
     isInProgressShown: true,
   }),
   getters: {
-    filteredTodo() {
+    filteredTodos() {
       const todos = [...this.todos];
 
       if (this.isInDescendingOrder) {
@@ -29,7 +29,7 @@ export const useTodoStore = defineStore('counter', {
       }
     },
     filteredTodosCounter() {
-      return this.filteredTodo.length;
+      return this.filteredTodos.length;
     }
   },
   actions: {
@@ -69,7 +69,7 @@ export const useTodoStore = defineStore('counter', {
         userId: 1,
         id: lastIndex + 1,
         title: taskText,
-        completed: false
+        completed: false,
       }
       this.todos.push(task);
       this.saveTodosToStorage();

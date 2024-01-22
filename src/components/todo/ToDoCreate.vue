@@ -5,15 +5,16 @@
       @keyup.enter="onButtonClickHandler"
       class="todo-create__text"
     />
-    <button @click="onButtonClickHandler">
+    <UiButton @click="onButtonClickHandler" is-container>
       <Icon icon="ci:add-plus-circle" width="40" height="40" />
-    </button>
+    </UiButton>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useTodoStore } from '../../store';
+import UiButton from '../ui/UiButton.vue';
 import { Icon } from '@iconify/vue';
 
 const { addTask } = useTodoStore();

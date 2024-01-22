@@ -1,31 +1,38 @@
 <template>
   <div class="todo-card" :class="{'todo-card_completed': isCompleted}">
-    <textarea v-if="isEditable" v-model="cardText" class="todo-card__textarea">{{ cardText }}</textarea>
+    <textarea
+      v-if="isEditable"
+      v-model="cardText"
+      class="todo-card__textarea"
+      >
+      {{ cardText }}
+    </textarea>
     <span v-else @dblclick="toggleIsEditable" class="todo-card__text">{{ title }}</span>
     <div class="todo-card__options">
-      <button @click="toggleIsEditable">
+      <UiButton @click="toggleIsEditable" is-container>
         <Icon v-if="isEditable" icon="mdi:cancel-outline" width="25" height="25" color="#e95959" />
         <Icon v-else icon="akar-icons:edit" width="25" height="25" />
-      </button>
-      <button v-if="isEditable" @click="applyEditing">
+      </UiButton>
+      <UiButton v-if="isEditable" @click="applyEditing" is-container>
         <Icon icon="mdi:done-outline" width="25" height="25" color="#36db81" />
-      </button>
-      <button @click="removeTask(id)">
+      </UiButton>
+      <UiButton @click="removeTask(id)" is-container>
         <Icon icon="ion:trash-outline" width="25" height="25" />
-      </button>
-      <button v-if="isCompleted" @click="toggleTaskStatus(id)">
+      </UiButton>
+      <UiButton v-if="isCompleted" @click="toggleTaskStatus(id)" is-container>
         <Icon icon="ant-design:rollback-outlined" width="25" height="25" />
-      </button>
-      <button v-else @click="toggleTaskStatus(id)">
+      </UiButton>
+      <UiButton v-else @click="toggleTaskStatus(id)" is-container>
         <Icon icon="mdi:checkbox-outline" width="25" height="25" />
-      </button>
+      </UiButton>
     </div>
   </div>
 </template>
 
 <script setup>
-import { toRefs, ref, onMounted } from "vue";
+import { toRefs, ref, onMounted } from 'vue';
 import { useTodoStore } from '../../store';
+import UiButton from '../ui/UiButton.vue';
 import { Icon } from '@iconify/vue';
 
 const props = defineProps({
@@ -79,6 +86,7 @@ onMounted(() => {
 
   &__text {
     text-align: left;
+    flex-grow: 1;
   }
 
   &__textarea {

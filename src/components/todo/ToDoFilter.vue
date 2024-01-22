@@ -34,12 +34,12 @@
         <label for="is-in-progress">Show in progress</label>
       </li>
     </ul>
-    <span class="todo-filter__total">ToDos: <b>{{ filteredTodosCounter }}</b></span>
+    <span class="todo-filter__total">ToDos:&nbsp;<b>{{ filteredTodosCounter }}</b></span>
   </div>
 </template>
 
 <script setup>
-import { storeToRefs } from "pinia";
+import { storeToRefs } from 'pinia';
 import { useTodoStore } from '../../store';
 
 const {

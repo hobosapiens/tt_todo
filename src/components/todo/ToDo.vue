@@ -1,27 +1,22 @@
 <template>
-  <div
-    v-if="filteredTodo.length"
-    class="todo"
-  >
+  <div v-if="filteredTodos.length" class="todo">
     <ToDoCreate />
     <ToDoFilter />
-    <ToDoList
-      :todos="filteredTodo"
-    />
+    <ToDoList :todos="filteredTodos" />
   </div>
   <UiLoader v-else />
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import { storeToRefs } from "pinia"
-import { useTodoStore } from '../../store'
-import ToDoCreate from './ToDoCreate.vue'
-import ToDoList from './ToDoList.vue'
-import ToDoFilter from './ToDoFilter.vue'
-import UiLoader from '../ui/UiLoader.vue'
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useTodoStore } from '../../store';
+import ToDoCreate from './ToDoCreate.vue';
+import ToDoList from './ToDoList.vue';
+import ToDoFilter from './ToDoFilter.vue';
+import UiLoader from '../ui/UiLoader.vue';
 
-const { filteredTodo } = storeToRefs(useTodoStore());
+const { filteredTodos } = storeToRefs(useTodoStore());
 const { loadTasks } = useTodoStore();
 
 onMounted(() => {
@@ -33,6 +28,7 @@ onMounted(() => {
 .todo {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   max-width: 800px;
 }
 </style>

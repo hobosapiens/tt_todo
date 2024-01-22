@@ -1,11 +1,12 @@
 <template>
-  <img src="../../assets/images/loader.gif" alt="loader">
+  <img class="todo__loader" src="../../assets/images/spinner.svg" alt="loader">
 </template>
 
 <script setup>
-
 </script>
 
 <style lang="scss" scoped>
-
+.todo__loader {
+  margin: auto;
+}
 </style>
